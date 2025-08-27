@@ -308,7 +308,7 @@ const TalexusAIHub = () => {
 
   const sidebarItems = [
     { icon: Home, label: 'Dashboard', active: false },
-    { icon: MessageSquare, label: 'Conversations', active: true, badge: chats.length > 0 ? chats.length.toString() : undefined },
+    { icon: MessageSquare, label: 'Conversations', active: true },
     { icon: Users, label: 'Customization', active: false },
     { icon: Bot, label: 'Chatbot', active: false },
     { icon: BarChart3, label: 'User Engagements', active: false },
@@ -412,7 +412,7 @@ const TalexusAIHub = () => {
           {sidebarItems.map((item, index) => (
             <button
               key={index}
-className={`w-full flex items-center ${sidebarCollapsed || sidebarWidth <= 220 ? 'justify-center' : 'justify-between'} ${sidebarCollapsed || sidebarWidth <= 220 ? 'px-2 py-2' : 'px-4 py-3'} mb-1 rounded-lg transition-colors ${
+className={`w-full flex items-center ${sidebarCollapsed || sidebarWidth <= 220 ? 'justify-center' : 'justify-between'} ${sidebarCollapsed || sidebarWidth <= 220 ? 'px-2 py-3' : 'px-4 py-3'} mb-1 rounded-lg transition-colors ${
                 item.active 
                   ? 'bg-blue-700 dark:bg-gray-800 text-white' 
                   : 'text-blue-200 dark:text-gray-400 hover:bg-blue-700 dark:hover:bg-gray-800 hover:text-white'
