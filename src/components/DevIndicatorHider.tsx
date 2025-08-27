@@ -29,7 +29,8 @@ export default function DevIndicatorHider() {
 
       // Very specific targeting for the "N" indicator - must be fixed position, circular, and contain only "N"
       const allDivs = document.querySelectorAll('div[style*="position: fixed"]');
-      allDivs.forEach(div => {
+      allDivs.forEach(element => {
+        const div = element as HTMLElement;
         const computedStyle = window.getComputedStyle(div);
         const text = div.textContent?.trim();
         

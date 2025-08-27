@@ -422,11 +422,6 @@ className={`w-full flex items-center ${sidebarCollapsed || sidebarWidth <= 220 ?
                 <item.icon className="w-5 h-5" />
                 {!sidebarCollapsed && sidebarWidth > 220 && <span className="text-sm font-medium">{item.label}</span>}
               </div>
-              {!sidebarCollapsed && sidebarWidth > 220 && item.badge && (
-                <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                  {item.badge}
-                </span>
-              )}
             </button>
           ))}
         </nav>
