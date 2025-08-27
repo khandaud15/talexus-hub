@@ -11,8 +11,16 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-// Initialize Firebase
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Initialize Firebase only on client side
+let app: any = null;
+let clientDb: any = null;
+let clientAuth: any = null;
 
-export const clientDb = getFirestore(app);
-export const clientAuth = getAuth(app);
+if (typeof window !== 'undefined') {
+  // Client-side initialization
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+  clientDb = getFirestore(app);
+  clientAuth = getAuth(app);
+}
+
+export { clientDb, clientAuth };

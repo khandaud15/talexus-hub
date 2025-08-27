@@ -182,7 +182,7 @@ const TalexusAIHub = () => {
   };
 
   const handleTyping = () => {
-    if (selectedConversation === null || !chats[selectedConversation]) return;
+    if (!clientDb || selectedConversation === null || !chats[selectedConversation]) return;
     
     const chatId = chats[selectedConversation].id;
     updateDoc(doc(clientDb, 'chats', chatId), {
@@ -202,7 +202,7 @@ const TalexusAIHub = () => {
 
   const sendMessage = async () => {
     const messageText = message.trim();
-    if (!messageText || selectedConversation === null || !chats[selectedConversation]) return;
+    if (!clientDb || !messageText || selectedConversation === null || !chats[selectedConversation]) return;
 
     const chatId = chats[selectedConversation].id;
     setMessage('');
@@ -251,6 +251,8 @@ const TalexusAIHub = () => {
 
   // Listen to chats from Firebase
   useEffect(() => {
+    if (!clientDb) return;
+    
     const chatsRef = collection(clientDb, 'chats');
     const q = query(chatsRef, orderBy('lastActivity', 'desc'));
 
@@ -281,7 +283,7 @@ const TalexusAIHub = () => {
 
   // Listen to messages for selected chat
   useEffect(() => {
-    if (selectedConversation === null || !chats[selectedConversation]) return;
+    if (!clientDb || selectedConversation === null || !chats[selectedConversation]) return;
 
     const chatId = chats[selectedConversation].id;
     const messagesRef = collection(clientDb, 'chats', chatId, 'messages');
